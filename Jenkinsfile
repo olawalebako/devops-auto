@@ -31,5 +31,12 @@ pipeline {
 				sh 'docker push afeeztyler98/devops-auto'
 			    }
 		    }
+            stage('Deploy to Kubernetes'){
+			    steps {
+                    script{
+                        kubernetesDeploy (configs: 'deploymentservice.yml', kubeconfigId: 'k8sconfigpwd')
+                    }
+			    }
+		    }
         }
 }
